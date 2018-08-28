@@ -10,10 +10,8 @@ polluntantmean <- function(directory, pollutant, id = 1:332) {
     data <- rbind(read.csv(paste(location,file, sep = "")), data)
   }
   
-  pollutant_data <- data[pollutant]
-  bad <- is.na(data[pollutant])
-  mean <- mean(pollutant_data[!bad])
-  
-  print(mean)  
+  #pollutant_data <- data[pollutant]
+  #bad <- is.na(data[pollutant])
+  #mean <- mean(pollutant_data[!bad])
+  mean(data[[pollutant]], na.rm = TRUE)
 }
-
