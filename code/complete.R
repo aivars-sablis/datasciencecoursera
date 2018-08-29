@@ -8,7 +8,7 @@ complete <- function(directory, id = 1:332) {
     #data <- rbind(read.csv(paste(location,file, sep = "")), data)
     tmp_data <- read.csv(paste(location,file, sep = ""))
     cc <- sum(complete.cases(tmp_data), na.rm=TRUE)
-    data <- rbind(data, data.frame("id" = id[1], "nobs" = cc))
+    data <- rbind(data, data.frame("id" = id[i], "nobs" = cc))
   }
   data
 }

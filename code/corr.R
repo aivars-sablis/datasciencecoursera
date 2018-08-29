@@ -1,11 +1,37 @@
 corr <- function(directory, threshold = 0) {
-  data <- complete(directory)
+  cr <- NULL
+  data <- NULL
+  id_data <- complete(directory)
+  cases <- subset(id_data, nobs > threshold, select = id)
   
-  cases <- data[[nobs > 150]] > 150
-  
-  cases
-  
+  location <- paste("/Users/admin/git/data-science-coursera/", directory, sep = "")
+  if (length(cases$id) > 0) {
+    length(cr) <- length(cases$id)
+    for (i in seq_along(cases$id)) {
+      file <- stri_pad_left(cases$id[i], 3, 0)
+      file <- paste("/",file,".csv", sep = "")
+      #data <- rbind(read.csv(paste(location,file, sep = "")), data)
+      data <- read.csv(paste(location,file, sep = ""))
+      cr[i] <- cor(data[["sulfate"]], data[["nitrate"]], use = "complete.obs")
+    }
+    return(cr) 
+  }
+  cr <- vector('numeric')
+  return(cr)
 }
 
 cr <- corr("specdata", 150)
 head(cr)
+summary(cr)
+
+cr <- corr("specdata", 400)
+head(cr)
+summary(cr)
+
+cr <- corr("specdata", 5000)
+summary(cr)
+length(cr)
+
+cr <- corr("specdata")
+summary(cr)
+length(cr)
