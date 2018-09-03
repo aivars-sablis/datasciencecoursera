@@ -15,6 +15,7 @@ best <- function(state, outcome) {
   data <- NULL
   data <- read.csv("assign-3-data/outcome-of-care-measures.csv", colClasses = "character")
   
+  ## Check that state and outcome are valid
   is_outcome <- outcome %in% c("heart attack", "heart failure", "pneumonia")
   if (!is_outcome) {
     stop("invalid outcome")
@@ -27,24 +28,24 @@ best <- function(state, outcome) {
   data <- subset(data, data["State"] == state)
   data <- data[order( data[,2] ),]
   
+  
   ## heart attack
   if (outcome == "heart attack") {
-    data[, 11] <- as.numeric(data[,11] )
-    data <- data[order( data[, 11] ),]
-    best <- data[1,"Hospital.Name"]
+    col_num <- 11
   }
   ## heart failure
   if (outcome == "heart failure") {
-    data[, 17] <- as.numeric(data[, 17] )
-    data <- data[order( as.numeric(data[, 17] )),]
-    best <- data[1,"Hospital.Name"]
+    col_num <- 17
   }
   ## pneumonia
   if (outcome == "pneumonia") {
-    data[, 23] <- as.numeric(data[, 23] )
-    data <- data[order( data[,23] ),]
-    best <- data[1,"Hospital.Name"]
+    col_num <- 23
   }
+
+  data[, col_num] <- as.numeric(data[, col_num] )
+  data <- data[order( data[, col_num] ),]
+  best <- data[1,"Hospital.Name"]
+
   best
 }
 
