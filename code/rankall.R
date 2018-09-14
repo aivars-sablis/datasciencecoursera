@@ -49,6 +49,8 @@ rankall <- function(outcome, num = "best") {
       num_x <- 1
     } else if (num == "worst") {
       num_x <- nrow(tmp_data)
+    } else {
+      num_x <- num 
     }
     if (num_x > nrow(tmp_data)) {
       hospital[i] <- NA
@@ -64,3 +66,12 @@ rankall <- function(outcome, num = "best") {
 head(rankall("heart attack", 20), 10)
 tail(rankall("pneumonia", "worst"), 3)
 tail(rankall("heart failure"), 10)
+
+r <- rankall("heart attack", 4)
+as.character(subset(r, state == "HI")$hospital)
+
+r <- rankall("pneumonia", "worst")
+as.character(subset(r, state == "NJ")$hospital)
+
+r <- rankall("heart failure", 10)
+as.character(subset(r, state == "NV")$hospital)

@@ -65,3 +65,8 @@ rankhospital("MN", "heart attack", 5000)
 rankhospital("WY", "pneumonia", "worst")
 rankhospital("WV", "pneumonia", "worst")
 rankhospital("WI", "pneumonia", "worst")
+
+rankhospital("NC", "heart attack", "worst")
+rankhospital("WA", "heart attack", 7)
+rankhospital("TX", "pneumonia", 10)
+rankhospital("NY", "heart attack", 7)
