@@ -44,7 +44,7 @@ f <- "UCI HAR Dataset/test/subject_test.txt"
 test_subject <- read.table(unz(file.path(path, zip), f), col.names = "subject", header = FALSE)
 f <- "UCI HAR Dataset/test/y_test.txt"
 test_activity <- read.table(unz(file.path(path, zip), f), col.names = "activity", header = FALSE)
-f <- "UCI HAR Dataset/test/x_test.txt"
+f <- "UCI HAR Dataset/test/X_test.txt"
 # Appropriately labels the data set with descriptive variable names.
 test_data <- read.table(unz(file.path(path, zip), f), col.names = col_names[["V2"]], header = FALSE)
 ```
@@ -58,7 +58,7 @@ f <- "UCI HAR Dataset/train/subject_train.txt"
 train_subject <- read.table(unz(file.path(path, zip), f), col.names = "subject", header = FALSE)
 f <- "UCI HAR Dataset/train/y_train.txt"
 train_activity <- read.table(unz(file.path(path, zip), f), col.names = "activity", header = FALSE)
-f <- "UCI HAR Dataset/train/x_train.txt"
+f <- "UCI HAR Dataset/train/X_train.txt"
 # Appropriately labels the data set with descriptive variable names.
 train_data <- read.table(unz(file.path(path, zip), f), col.names = col_names[["V2"]], header = FALSE)
 ```
@@ -92,9 +92,8 @@ Uses descriptive activity names to name the activities in the data set
 f <- "UCI HAR Dataset/activity_labels.txt"
 activity_labels_table <- read.table(unz(file.path(path, zip), f), header = FALSE)
 activity_labels <- as.vector(activity_labels_table[["V2"]])
-extracted_data <- extracted_data %>% 
-                    mutate(activity=cut(activity, breaks=c(0, 1, 2, 3, 4, 5, 6), 
-                                        labels = activity_labels))
+data <- data %>% mutate(activity=cut(activity, breaks=c(0, 1, 2, 3, 4, 5, 6), 
+                                     labels = activity_labels))
 ```
 
 ## Tidy data set (Step 5)
