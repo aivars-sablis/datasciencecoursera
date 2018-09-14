@@ -34,8 +34,11 @@ download.file(url, file.path(path, zip))
 
 Load column names
 ```r
+# And Appropriately label the data set with descriptive variable names.
 f <- "UCI HAR Dataset/features.txt"
 col_names <- read.table(unz(file.path(path, zip), f), header = FALSE)
+col_names[["V2"]] <- sub('^t', 'Time', col_names[["V2"]])
+col_names[["V2"]] <- sub('^f', 'Freq', col_names[["V2"]])
 ```
 Load all data
 ```r
@@ -44,7 +47,6 @@ test_subject <- read.table(unz(file.path(path, zip), f), col.names = "subject", 
 f <- "UCI HAR Dataset/test/y_test.txt"
 test_activity <- read.table(unz(file.path(path, zip), f), col.names = "activity", header = FALSE)
 f <- "UCI HAR Dataset/test/X_test.txt"
-# Appropriately labels the data set with descriptive variable names.
 test_data <- read.table(unz(file.path(path, zip), f), col.names = col_names[["V2"]], header = FALSE)
 ```
 Merge subjects, activity and data together
@@ -58,7 +60,6 @@ train_subject <- read.table(unz(file.path(path, zip), f), col.names = "subject",
 f <- "UCI HAR Dataset/train/y_train.txt"
 train_activity <- read.table(unz(file.path(path, zip), f), col.names = "activity", header = FALSE)
 f <- "UCI HAR Dataset/train/X_train.txt"
-# Appropriately labels the data set with descriptive variable names.
 train_data <- read.table(unz(file.path(path, zip), f), col.names = col_names[["V2"]], header = FALSE)
 ```
 Merge subjects, activity and data together
