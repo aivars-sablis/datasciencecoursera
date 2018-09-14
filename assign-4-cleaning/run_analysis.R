@@ -17,7 +17,7 @@ download.file(url, file.path(path, zip))
 f <- "UCI HAR Dataset/features.txt"
 col_names <- read.table(unz(file.path(path, zip), f), header = FALSE)
 col_names[["V2"]] <- sub('^t', 'Time', col_names[["V2"]])
-col_names[["V2"]] <- sub('^f', 'Freq', col_names[["V2"]])
+col_names[["V2"]] <- sub('^f', 'Frequency', col_names[["V2"]])
 
 f <- "UCI HAR Dataset/test/subject_test.txt"
 test_subject <- read.table(unz(file.path(path, zip), f), col.names = "subject", header = FALSE)
